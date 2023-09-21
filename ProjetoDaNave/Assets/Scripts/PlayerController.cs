@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public int forcaEmX;
     public int forcaEmZ;
+
+    public GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +34,13 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(-forcaEmX * Time.fixedDeltaTime, 0, 0);
         }
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+      if(collision.collider.CompareTag("Enemy"))
+        {
+            gameController.GameOver();
+        }
     }
 }
