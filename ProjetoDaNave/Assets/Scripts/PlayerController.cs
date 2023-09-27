@@ -8,21 +8,27 @@ public class PlayerController : MonoBehaviour
 
 
     public int forcaEmX;
-    public int forcaEmZ;
+    public int forcaEmZ = 50;
+    public int velocidadeMaximaZ = 100;
 
     public GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
         forcaEmX = 4500;
-        forcaEmZ = 400;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //Mover no eixo Z - Para frente
-        rb.AddForce(0, 0, forcaEmZ * Time.fixedDeltaTime);
+
+
+        if (rb.velocity.z < velocidadeMaximaZ)
+        {
+            rb.AddForce(0, 0, forcaEmZ * Time.fixedDeltaTime);
+        }
+        Debug.Log("Velocidade da Nave - " + rb.velocity.z);
 
         //Mover no eixo X Direita
         if(Input.GetKey("d")) {
@@ -38,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-      if(collision.collider.CompareTag("Enemy"))
+      if(collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Wall"))
         {
             gameController.GameOver();
         }

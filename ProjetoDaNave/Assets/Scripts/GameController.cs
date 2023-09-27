@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     float pontuacao;
     public Text textoPontuacao;
     public float divisorPontuacao = 20;
+    public GameObject painelGameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,12 @@ public class GameController : MonoBehaviour
     }
 
     public void GameOver()
+    {
+        painelGameOver.SetActive(true);
+        
+    }
+
+    public void RecarregarLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
