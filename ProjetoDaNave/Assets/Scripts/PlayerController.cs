@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(0, 0, forcaEmZ * Time.fixedDeltaTime);
         }
-        Debug.Log("Velocidade da Nave - " + rb.velocity.z);
+        //Debug.Log("Velocidade da Nave - " + rb.velocity.z);
 
         //Mover no eixo X Direita
         if(Input.GetKey("d")) {
@@ -47,6 +47,14 @@ public class PlayerController : MonoBehaviour
       if(collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Wall"))
         {
             gameController.GameOver();
+        }
+    }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        if (trigger.CompareTag("Planeta"))
+        {
+            gameController.VencerJogo();
         }
     }
 }

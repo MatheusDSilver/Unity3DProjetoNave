@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     public Text textoPontuacao;
     public float divisorPontuacao = 20;
     public GameObject painelGameOver;
+    public GameObject painelWinner;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -37,4 +39,10 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void VencerJogo()
+    {
+        painelWinner.SetActive(true);
+    }
+
 }
